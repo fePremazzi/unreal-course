@@ -1,3 +1,5 @@
 ﻿  FBullCowGame.cpp
-c:\users\felli\dropbox\cursos online\unreal course\section_02\bullcowgame\fbullcowgame.cpp(25): warning C4267: 'return': conversão de 'size_t' para 'int32', possível perda de dados
+c:\users\felli\dropbox\cursos online\unreal course\section_02\bullcowgame\fbullcowgame.cpp(27): warning C4267: 'return': conversão de 'size_t' para 'int32', possível perda de dados
+  main.cpp
+  Gerando Código...
   BullCowGame.vcxproj -> C:\Users\felli\Dropbox\Cursos Online\Unreal Course\Section_02\x64\Debug\BullCowGame.exe
