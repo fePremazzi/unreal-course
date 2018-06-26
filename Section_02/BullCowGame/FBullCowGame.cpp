@@ -1,6 +1,8 @@
+#pragma once
+
 #include "FBullCowGame.h"
 #include <map>
-#define TMap std::map
+#define TMap std::map//to make syntanx Unreal friendly
 
 //FString
 
@@ -10,15 +12,19 @@ FBullCowGame::FBullCowGame() {
 
 void FBullCowGame::Reset()
 {
-	const FString HIDDEN_WORD = "planet";
-	constexpr int32 MAX_TRIES = 2;
+	const FString HIDDEN_WORD = "planet";//this must be an isogram
+	//constexpr int32 MAX_TRIES{3};
 	MyHiddenWord = HIDDEN_WORD;
 	MyCurrentTry = 1;
-	MyMaxTries = MAX_TRIES;
+	//MyMaxTries = MAX_TRIES;
 	bGameIsWon = false;
 }
 
-int32 FBullCowGame::GetMaxTries() const{	return MyMaxTries;}
+int32 FBullCowGame::GetMaxTries() const
+{	
+	TMap<int32, int32> WordLengthToMaxTries{ {3,4},{4,7}, {5,10}, {6,15},  {7,20} };
+	return WordLengthToMaxTries[MyHiddenWord.length()];
+}
 
 int32 FBullCowGame::GetCurrentTry() const{	return MyCurrentTry;}
 
@@ -32,7 +38,7 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 	{
 		return EGuessStatus::Not_Isogram;
 	}
-	else if (false)//TODO if the guess is not all lowerwcase, 
+	else if (!IsLowerCase(Guess))//TODO if the guess is not all lowerwcase, 
 	{
 		return EGuessStatus::Not_Lowercase;
 	}
@@ -104,10 +110,17 @@ bool FBullCowGame::IsIsogram(FString Word) const
 			LetterSeen[Letter] = true;
 		}
 	}
-	
-		//if the letter is in the map
-			//we do NOT have an isogram
-		//otheriwse
-			//add that letter to the map
+	return true;
+}
+
+bool FBullCowGame::IsLowerCase(FString Word) const
+{
+	for (char Letter : Word )
+	{
+		if (!islower(Letter))
+		{
+			return false;
+		}
+	}
 	return true;
 }

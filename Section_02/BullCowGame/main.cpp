@@ -4,17 +4,20 @@
    for all user interaction. For game logic see the FBullCowGame class.
 
 */
+#pragma once
 
 #include <iostream>
 #include <string>
 #include "FBullCowGame.h"
 
+//to make syntax Unreal friendly
 using FText = std::string;
 using int32 = int;
 
 
 //FText is generally used for user interaction
 
+//function prototypes as outside class
 void PrintIntro();
 void PlayGame();
 FText GetValidGuess();
@@ -49,9 +52,6 @@ void PlayGame()
 	while (!BCGame.IsGameWon() && BCGame.GetCurrentTry() <= MaxTries)
 	{
 		FText Guess = GetValidGuess();
-		std::cout << std::endl;
-
-
 
 		//submit valide guess to the game
 		FBullCowCount BullCowCount = BCGame.SubmitValidGuess(Guess);
